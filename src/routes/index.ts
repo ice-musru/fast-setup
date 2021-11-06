@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 // 导入所有子模块 vite
 const modulesFiles = import.meta.globEager('./modules/**/*.{js,ts}')
@@ -6,8 +6,7 @@ const modulesFiles = import.meta.globEager('./modules/**/*.{js,ts}')
 const routerModules: RouteRecordRaw[] = Object.keys(modulesFiles).reduce((prev: RouteRecordRaw[], key: string) => [...prev, ...modulesFiles[key].default], [])
 // 实例化路由
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: routerModules,
 })
-
 export default router
