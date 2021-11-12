@@ -1,0 +1,50 @@
+/* 页面切换动画
+------------------------------- */
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+	will-change: transform;
+	transition: all 0.3s ease;
+}
+// slide-right
+.slide-right-enter-from {
+	opacity: 0;
+	transform: translateX(-20px);
+}
+.slide-right-leave-to {
+	opacity: 0;
+	transform: translateX(20px);
+}
+// slide-left
+.slide-left-enter-from {
+	@extend .slide-right-leave-to;
+}
+.slide-left-leave-to {
+	@extend .slide-right-enter-from;
+}
+// opacitys
+.opacitys-enter-active,
+.opacitys-leave-active {
+	will-change: transform;
+	transition: all 0.3s ease;
+}
+.opacitys-enter-from,
+.opacitys-leave-to {
+	opacity: 0;
+}
+
+/* Breadcrumb 面包屑过渡动画
+------------------------------- */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+	transition: all 0.3s;
+}
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+	opacity: 0;
+	transform: translateX(20px);
+}
+.breadcrumb-leave-active {
+	position: absolute;
+}
