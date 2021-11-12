@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/About.vue'),
   },
   {
+    path: '/no-access',
+    name: 'NoAccess',
+    component: () => import('@/views/NoAccess.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     component: () => import('@/views/404.vue'),

@@ -9,4 +9,20 @@ const router = createRouter({
   history: createWebHistory(),
   routes: routerModules,
 })
+
+// router.beforeResolve((to, from, next) => {
+//   const username = 'hanyang'
+//   const userage = '18'
+
+//   if (to.fullPath === '/no-access' && userage !== '18') {
+//     next('/')
+//     return false
+//   } else if (to.fullPath !== '/no-access' && username === 'hanyang') {
+//     next('/no-access')
+//     return false
+//   } else {
+//     next()
+//   }
+// })
+
 export default router

@@ -1,12 +1,23 @@
 <script lang="tsx">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import useScopeId from '@/hooks/useScopeId'
 
 export default defineComponent({
   name: 'HomePage',
   setup() {
+    const counter = ref(0)
+    const loading = ref(true)
     const withScoped = useScopeId()
-    return withScoped(() => <div class='home-wrap'>这里是主页</div>)
+    return withScoped(() => (
+      <div class='home-wrap'>
+        <div v-loading={loading.value} class='w-200px h-200px bg-red-200'>
+          {counter.value}
+        </div>
+        <div>
+          <el-input type='text' v-model={counter.value} />
+        </div>
+      </div>
+    ))
   },
 })
 </script>
