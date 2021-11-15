@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import refreshLoading from '@/utils/refresh-loading'
 
 // 导入所有子模块 vite
 const modulesFiles = import.meta.globEager('./modules/**/*.{js,ts}')
@@ -7,7 +8,14 @@ const routerModules: RouteRecordRaw[] = Object.keys(modulesFiles).reduce((prev: 
 // 实例化路由
 const router = createRouter({
   history: createWebHistory(),
-  routes: routerModules,
+  routes: [
+    {
+      path: '/',
+      name: 'Layout',
+      component: () => import('@/layout/index.vue'),
+      children: [...routerModules],
+    },
+  ],
 })
 
 // router.beforeResolve((to, from, next) => {
@@ -24,5 +32,14 @@ const router = createRouter({
 //     next()
 //   }
 // })
+router.beforeEach((to, from, next) => {
+  if (window.refreshLoading === undefined) refreshLoading.start()
+  next()
+})
+
+// 路由加载后
+router.afterEach(() => {
+  refreshLoading.done()
+})
 
 export default router
