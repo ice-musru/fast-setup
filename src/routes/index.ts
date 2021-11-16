@@ -5,6 +5,11 @@ import refreshLoading from '@/utils/refresh-loading'
 const modulesFiles = import.meta.globEager('./modules/**/*.{js,ts}')
 // 所有路由
 const routerModules: RouteRecordRaw[] = Object.keys(modulesFiles).reduce((prev: RouteRecordRaw[], key: string) => [...prev, ...modulesFiles[key].default], [])
+
+const filterRouterModules = (data: any[]) => {
+  return []
+}
+
 // 实例化路由
 const router = createRouter({
   history: createWebHistory(),
@@ -15,23 +20,19 @@ const router = createRouter({
       component: () => import('@/layout/index.vue'),
       children: [...routerModules],
     },
+    {
+      path: '/no-access',
+      name: 'NoAccess',
+      component: () => import('@/views/NoAccess.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: '404',
+      component: () => import('@/views/404.vue'),
+    },
   ],
 })
 
-// router.beforeResolve((to, from, next) => {
-//   const username = 'hanyang'
-//   const userage = '18'
-
-//   if (to.fullPath === '/no-access' && userage !== '18') {
-//     next('/')
-//     return false
-//   } else if (to.fullPath !== '/no-access' && username === 'hanyang') {
-//     next('/no-access')
-//     return false
-//   } else {
-//     next()
-//   }
-// })
 router.beforeEach((to, from, next) => {
   if (window.refreshLoading === undefined) refreshLoading.start()
   next()

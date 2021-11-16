@@ -34,7 +34,7 @@ const refreshLoading = {
   // 移除 loading
   done: () => {
     nextTick(async () => {
-      await Tools.$sleep(200)
+      await Tools.$sleep(1000)
       window.refreshLoading = false
       const el = document.querySelector('.loading-next')
       el && el.parentNode?.removeChild(el)

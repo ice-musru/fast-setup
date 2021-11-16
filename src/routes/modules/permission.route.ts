@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/config',
+    path: '/permission-config',
     name: 'PermissionConfig',
     component: () => import('@/views/permission/config.vue'),
   },
